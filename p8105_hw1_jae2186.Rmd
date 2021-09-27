@@ -1,0 +1,32 @@
+---
+title: "p8105_hw1_jae2186"
+author: "jae2186 (Jennifer Estrada)"
+date: "9/27/2021"
+output: 
+  html_document:
+  toc: true
+  toc_float: true
+  code_folding: hide
+---
+
+```{r setup, include=FALSE}
+
+
+
+```
+
+## 
+
+
+
+```{r cars}
+summary(cars)
+```
+
+## 
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
