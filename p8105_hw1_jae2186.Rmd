@@ -1,32 +1,87 @@
 ---
 title: "p8105_hw1_jae2186"
 author: "jae2186 (Jennifer Estrada)"
-date: "9/27/2021"
-output: 
+date: "9/29/2021"
+output:
   html_document:
-  toc: true
-  toc_float: true
-  code_folding: hide
+    code_folding: show
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
+```
 
+## Problem 1
 
+This first data frame includes the following:
+
+* a random sample of size 10 from a standard Normal distribution,
+* a logical vector indicating whether elements of the sample are greater than 0,
+* a character vector of length 10, and
+* a factor vector of length 10, with 3 different factor “levels”.
+
+```{r p1_dataframe, message=FALSE, warning=FALSE}
+
+set.seed(1)
+
+p1_df <- tibble(rsamp = rnorm(10),
+                vec_log = rsamp > 0,
+                vec_char = c("this", "is", "a", "character", 
+                              "vector", "that", "is", "ten",
+                              "characters","long"),
+                vec_factor = factor(c("green", "green","blue", "blue",
+                                       "blue", "blue", "blue", "purple", 
+                                       "purple", "purple"))
+)
+
+p1_df
 
 ```
 
-## 
 
+The following code chunk takes the mean of each variable:
 
+```{r p1_means, message=FALSE}
 
-```{r cars}
-summary(cars)
+mean_rsamp <- mean(pull(p1_df, var = 1))
+mean_log <- mean(pull(p1_df, var = 2))
+mean_char <- mean(pull(p1_df, var = 3))
+mean_factor <- mean(pull(p1_df, var = 4))
+
 ```
 
-## 
+
+When taking the mean of each variable in the dataframe p1_df only the random sample and logical vector return values. The random sample variables return a mean of `r round(mean_rsamp, 2)`. The logical vector converted "true" into 1 and "false" into 0; given that there were 6 "true" and 4 "false" values, the mean was `r mean_log`. Otherwise warning messages appear for the character and factor vectors as they are not numeric nor logical (as noted above).
+
+The following is then a code chunk that applies the as.numeric function to the logical, character, and factor variables:
 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r p1_as_numeric}
+
+log_asnum <- as.numeric(p1_df$vec_log)
+
+char_asnum <- as.numeric(p1_df$vec_char)
+
+factor_asnum <- as.numeric(p1_df$vec_factor)
+
+```
+
+When the as.numeric function is applied:
+
+* the logical variable is converted to a numeric value column then the "true" and "false" values are converted to 1 and 0, respectively.
+* the character variable still cannot be converted to values and coerces "NA to replace each input.
+* the factor variable is has an integer assigned to each factor level in alphabetical order such that with the three factors "green", "blue", and "purple", "green" is coded as 2, "blue" is coded as 1, and "purple" is coded as 3.
+
+Again, because the characters have no inherent values they cannot be converted to a numeric scale and the mean cannot be derived from this variable. However, the logical values are consistent to how the binary variable was previously coded when calculating the mean. The factor variable has changed and with a numeric value applied to each level a mean can be calculated.
+
+
+## Problem 2
+
+
+
+```{r problem2, message=FALSE, warning=FALSE}
+
 ```
 
