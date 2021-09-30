@@ -80,12 +80,11 @@ Again, because the characters have no obvious values they cannot be converted to
 
 ## Problem 2
 
-
+First the `penguins` dataset is loaded.
 
 ```{r problem2, message=FALSE, warning=FALSE}
 
 data("penguins", package = "palmerpenguins")
-
 
 ```
 
@@ -94,6 +93,7 @@ The `penguins` dataset includes:
 * `r ncol(penguins)`  different variables for `r nrow(penguins)` entries
 
 * variables that describe qualitative demographic information about each subject including:  
+  
   * which of `r nlevels(penguins$species)` `species` the pengiun is, 
   * the pengiun `sex`, and 
   * at which one of `r nlevels(penguins$island)` `island` locations the penguin was found.
