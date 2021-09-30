@@ -94,14 +94,14 @@ The `penguins` dataset includes:
 
 * variables that describe qualitative demographic information about each subject including:  
   
-  * which of `r nlevels(penguins$species)` `species` the pengiun is, 
-  * the pengiun `sex`, and 
-  * at which one of `r nlevels(penguins$island)` `island` locations the penguin was found.
+  * which of `r nlevels(penguins$species)` `species` the penguin is (i.e. `r levels(penguins$species)`), 
+  * the penguin `sex` (either `r factor(penguins$sex[2])` or `r factor(penguins$sex[1])`), and 
+  * at which one of `r nlevels(penguins$island)` `island` locations the penguin was found (i.e. `r levels(penguins$island)`).
 
 * variables that provide quantitative demographic information including:
   
   * year of data collection (under `year`), 
-  * bill length (in mmm, under `bill_length_mm`), 
+  * bill length (in mm, under `bill_length_mm`), 
   * bill depth (in mm, under `bill_depth_mm`), 
   * flipper length (in mm, under `flipper_length_mm`), and 
   * body mass (in g, under `body_mass_g`).
@@ -112,7 +112,7 @@ Some general statistics for this sampling population include:
 
 * a mean bill depth of `r round(mean(penguins$bill_depth_mm, na.rm = TRUE), 2)` mm from `r length(na.omit(penguins$bill_depth_mm))` values,
 
-* <b> a mean flipper length depth of `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm from `r length(na.omit(penguins$flipper_length_mm))` values</b>, and
+* <b> a mean flipper length of `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm from `r length(na.omit(penguins$flipper_length_mm))` values</b>, and
 
 * a mean body mass of `r round(mean(penguins$body_mass_g, na.rm = TRUE), 2)` g from `r length(na.omit(penguins$body_mass_g))` values.
 
