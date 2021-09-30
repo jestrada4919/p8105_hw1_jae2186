@@ -3,10 +3,7 @@ title: "p8105_hw1_jae2186"
 author: "jae2186 (Jennifer Estrada)"
 date: "9/29/2021"
 output:
-  html_document:
-    code_folding: show
-    toc: true
-    toc_float: true
+  github_document
 ---
 
 ```{r setup, include=FALSE}
