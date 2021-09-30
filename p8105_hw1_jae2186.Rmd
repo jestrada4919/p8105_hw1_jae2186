@@ -53,9 +53,9 @@ mean_factor <- mean(pull(p1_df, var = 4))
 ```
 
 
-When taking the mean of each variable in the dataframe p1_df only the random sample and logical vector return values. The random sample variables return a mean of `r round(mean_rsamp, 2)`. The logical vector converted "true" into 1 and "false" into 0; given that there were 6 "true" and 4 "false" values, the mean was `r mean_log`. Otherwise warning messages appear for the character and factor vectors as they are not numeric nor logical (as noted above).
+When taking the mean of each variable in the dataframe `p1_df` only the random sample and logical vector return values. The random sample variables return a mean of `r round(mean_rsamp, 2)`. The logical vector converted `true` into 1 and `false` into 0; given that there were 6 `true` and 4 `false` values, the mean was `r mean_log`. Otherwise warning messages appear for the character and factor vectors as they are not numeric nor logical (as noted above).
 
-The following is then a code chunk that applies the as.numeric function to the logical, character, and factor variables:
+The following is then a code chunk that applies the `as.numeric` function to the logical, character, and factor variables:
 
 
 ```{r p1_as_numeric}
@@ -68,13 +68,15 @@ factor_asnum <- as.numeric(p1_df$vec_factor)
 
 ```
 
-When the as.numeric function is applied:
+When the `as.numeric` function is applied:
 
-* the logical variable is converted to a numeric value column then the "true" and "false" values are converted to 1 and 0, respectively.
-* the character variable still cannot be converted to values and coerces "NA to replace each input.
-* the factor variable is has an integer assigned to each factor level in alphabetical order such that with the three factors "green", "blue", and "purple", "green" is coded as 2, "blue" is coded as 1, and "purple" is coded as 3.
+* the logical variable is converted to a numeric value column then the `true` and `false` values are converted to 1 and 0, respectively.
 
-Again, because the characters have no inherent values they cannot be converted to a numeric scale and the mean cannot be derived from this variable. However, the logical values are consistent to how the binary variable was previously coded when calculating the mean. The factor variable has changed and with a numeric value applied to each level a mean can be calculated.
+* the character variable still cannot be converted to values and coerces `NA` to replace each input.
+
+* the factor variable is has an integer assigned to each factor level in alphabetical order such that with the three factors `green`, `blue`, and `purple`, `green` is coded as 2, `blue` is coded as 1, and `purple` is coded as 3.
+
+Again, because the characters have no inherent values they cannot be converted to a numeric scale and the mean cannot be derived from this variable. However, the logical values are consistent to how the binary variable was previously coded when calculating the mean initially. The factor variable has changed and with a numeric value applied to each level a mean can now be calculated.
 
 
 ## Problem 2
@@ -82,6 +84,47 @@ Again, because the characters have no inherent values they cannot be converted t
 
 
 ```{r problem2, message=FALSE, warning=FALSE}
+
+data("penguins", package = "palmerpenguins")
+
+
+```
+
+The `penguins` dataset includes:
+
+* `r ncol(penguins)`  different variables for `r nrow(penguins)` entries
+
+* variables that describe qualitative demographic information about each subject including:  
+  * which of `r nlevels(penguins$species)` `species` the pengiun is, 
+  * the pengiun `sex`, and 
+  * at which one of `r nlevels(penguins$island)` `island` locations the penguin was found.
+
+* variables that provide quantitative demographic information including:
+  
+  * year of data collection (under `year`), 
+  * bill length (in mmm, under `bill_length_mm`), 
+  * bill depth (in mm, under `bill_depth_mm`), 
+  * flipper length (in mm, under `flipper_length_mm`), and 
+  * body mass (in g, under `body_mass_g`).
+
+Some general statistics for this sampling population include:
+
+* a mean bill length of `r round(mean(penguins$bill_length_mm, na.rm = TRUE), 2)` mm from `r length(na.omit(penguins$bill_length_mm))` values,
+
+* a mean bill depth of `r round(mean(penguins$bill_depth_mm, na.rm = TRUE), 2)` mm from `r length(na.omit(penguins$bill_depth_mm))` values,
+
+* <b> a mean flipper length depth of `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm from `r length(na.omit(penguins$flipper_length_mm))` values</b>, and
+
+* a mean body mass of `r round(mean(penguins$body_mass_g, na.rm = TRUE), 2)` g from `r length(na.omit(penguins$body_mass_g))` values.
+
+
+```{r p2_ggplot, message=FALSE, warning=FALSE}
+
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point() + 
+  labs(x = "Bill Length (mm)", y = "Flipper Length (mm)", colour = "Species")
+
+ggsave("p8105_hw1_p2_jae2186.pdf")
 
 ```
 
